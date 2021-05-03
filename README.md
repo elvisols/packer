@@ -10,7 +10,7 @@ String.
 * Java 11 or above
 * Maven 3+
 
-### Using the application
+### Running the program
 
 This program is designed to be a fully independent jar and can be packaged to generate the corresponding archive as follows
 
