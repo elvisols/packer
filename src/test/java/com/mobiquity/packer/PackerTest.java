@@ -27,7 +27,7 @@ public class PackerTest {
 
         try (MockedStatic<Files> file = Mockito.mockStatic(Files.class)) {
             file.when(() -> Files.readString(Mockito.any(Path.class)))
-                    .thenReturn(sampleFileContent);
+                .thenReturn(sampleFileContent);
 
             assertThat(Packer.pack("/filename_in_resource_folder.txt")).isEqualTo("8 : (1,15.3,€34)");
         }
