@@ -1,8 +1,6 @@
 package com.mobiquity.exception;
 
-import java.io.IOException;
-
-public class APIException extends IOException {
+public class APIException extends Exception {
 
     public APIException() {
         super();
