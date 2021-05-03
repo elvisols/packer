@@ -26,6 +26,7 @@ public class Packer {
     }
 
     /**
+     * Package challenge solver
      * @param filePath - Input file testCases
      * @return - Output string (items’ index numbers are separated by comma)
      */
@@ -33,16 +34,16 @@ public class Packer {
         String result = "";
         Path path = Paths.get(filePath);
 
-        ParkerService parkerService = new ParkerServiceImpl();
+        ParkerService parkerService = ParkerServiceImpl.getInstance();
 
         try {
             result = Files.readString(path).lines()
-                    .map(wrap(line -> {
-                        AbstractMap.SimpleImmutableEntry<Integer, Item[]> entry = readItems(line);
+                .map(wrap(line -> {
+                    AbstractMap.SimpleImmutableEntry<Integer, Item[]> entry = readItems(line);
 
-                        return parkerService.pack(entry.getValue(), entry.getKey());
-                    }))
-                    .collect(Collectors.joining("\n"));
+                    return parkerService.pack(entry.getValue(), entry.getKey());
+                }))
+                .collect(Collectors.joining("\n"));
         } catch (Exception e) {
             throw new APIException(e.getCause().getMessage());
         }
@@ -56,18 +57,18 @@ public class Packer {
      * @return
      */
     private static AbstractMap.SimpleImmutableEntry<Integer, Item[]> readItems(String line) throws APIException {
-        capacity = 0;
         Item[] items;
         String[] lineArr = line.split(":");
 
         // set the capacity value
         capacity = Integer.valueOf(lineArr[0].trim());
 
-        // set Items array
+        // clean up records
         var itemStream = Arrays.stream(lineArr[1].trim().split(" "))
             .map(i -> i.replaceAll("[(|)]", "")) // strip parenthesis
             .map(i -> i.replace("€", "")); // strip currency sign
 
+        // set Items array
         items = itemStream.map(wrap(i -> {
                 String[] entry = i.split(",");
 
@@ -75,6 +76,7 @@ public class Packer {
                 if(Float.valueOf(entry[1]) > MAX_WEIGHT || Float.valueOf(entry[2]) > MAX_COST)
                     throw new APIException(String.format("Error: Max weight/cost per item exceeded. Acceptable values must be less than or equal to %d/%d.", MAX_WEIGHT, MAX_COST));
 
+                // return Item<cost, weight, index>
                 return new Item(Integer.valueOf(entry[2]), Float.valueOf(entry[1]), Integer.valueOf(entry[0]) - 1);
             })).toArray(Item[]::new);
 

@@ -13,10 +13,19 @@ public class ParkerServiceImpl implements ParkerService {
     private int size;
     private float capacity;
 
+    private ParkerServiceImpl() { }
+
+    private volatile static ParkerServiceImpl singleParkerServiceImpl = new ParkerServiceImpl();
+
+    public static ParkerServiceImpl getInstance() {
+        return singleParkerServiceImpl;
+    }
+
     /**
      * Compute possible items using Least Cost Branch and Bound algorithm
      * @param arr - The items array. Each row represent an item, columns consist of the Cost, Weight, Index
-     * @return Output string (items’ index numbers are separated by comma)
+     * @return Output string (items’ index numbers, separated by comma)
+     * @apiNote Cognitive complexity 30 - 35.
      */
     public String pack(Item[] arr, float capacity) {
         size = arr.length;
