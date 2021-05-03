@@ -32,10 +32,6 @@ public class Packer {
     private final static int MAX_COST = 100;
     private final static int MAX_ITEM = 15;
 
-    public static void main(String[] args) throws APIException {
-         System.out.println(pack(Packer.class.getResource("/testcases.txt").getPath()));
-    }
-
     /**
      * Package challenge solver
      * @param filePath - Input file testCases
