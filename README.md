@@ -1,4 +1,4 @@
-# Package Fitter
+# Package Challenge
 
 This is a plain Java 11 program to compute the number of items to package, to yield a maximum cost/profit.
 

@@ -13,12 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PackerTest {
 
-//    @Mock
-//    Dependency dependencyMock;
-
-//    @InjectMocks
-//    Packer packerTest;
-
     @Test
     void get_successful_result_test() throws APIException {
 

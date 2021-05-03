@@ -23,7 +23,7 @@ import static com.mobiquity.util.Helper.wrap;
  *
  * Design pattern: To ensure that unwanted objects are not created in the heap, a singleton class - ParkerServiceImpl was enabled.
  *
- * This class comes with unit tests to test expectations and constraints. And has over 70% test coverage as captured in the <i>test-coverage-reports folder<i/>
+ * This class comes with unit tests to test expectations and constraints. And has over 70% test coverage as captured in the <i>test-coverage-reports folder<i/> after packaging <i>(see Readme file)</i>.
  */
 public class Packer {
 
