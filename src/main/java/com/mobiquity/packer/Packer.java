@@ -14,12 +14,23 @@ import java.util.stream.Collectors;
 
 import static com.mobiquity.util.Helper.wrap;
 
+/**
+ * This class accepts an input file of testcases to compute the number of items to package to yield a maximum cost/profit.
+ *
+ * The Branch and Bound algorithm was used to traverse the decision and draw inference of which items to include or not.
+ * This algorithm is very scalable and its space and time complexity is a little better than its counterparts - Dynamic programming & Greedy method.
+ * Some data structures used are Lists (for unordered storage), Arrays (for ordered item storage), Priority Queue (storing and sorting selected items on the fly) etc
+ *
+ * Design pattern: To ensure that unwanted objects are not created in the heap, a singleton class - ParkerServiceImpl was enabled.
+ *
+ * This class comes with unit tests to test expectations and constraints. And has over 70% test coverage as captured in the <i>test-coverage-reports folder<i/>
+ */
 public class Packer {
 
     private static int capacity;
     private final static int MAX_WEIGHT = 100;
     private final static int MAX_COST = 100;
-    private final static int MAX_ITEM = 100;
+    private final static int MAX_ITEM = 15;
 
     public static void main(String[] args) throws APIException {
          System.out.println(pack(Packer.class.getResource("/testcases.txt").getPath()));
